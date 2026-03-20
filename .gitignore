@@ -1,0 +1,7 @@
+/target
+
+# Response file
+.response.txt
+
+# Textify generated file
+*.textify.txt
