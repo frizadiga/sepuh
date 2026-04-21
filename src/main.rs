@@ -1,3 +1,4 @@
+mod mod_ollama;
 mod mod_openai;
 mod mod_xai;
 mod utils;
@@ -22,6 +23,7 @@ async fn main() -> anyhow::Result<()> {
     }
 
     match vendor.as_str() {
+        "ollama" => mod_ollama::mod_ollama(&args.prompt).await?,
         "openai" => mod_openai::mod_openai(&args.prompt).await?,
         "xai" => mod_xai::mod_xai(&args.prompt).await?,
         other => {
