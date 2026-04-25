@@ -1,5 +1,7 @@
+mod mod_google;
 mod mod_ollama;
 mod mod_openai;
+mod mod_openrouter;
 mod mod_xai;
 mod utils;
 
@@ -23,8 +25,10 @@ async fn main() -> anyhow::Result<()> {
     }
 
     match vendor.as_str() {
+        "google" => mod_google::mod_google(&args.prompt).await?,
         "ollama" => mod_ollama::mod_ollama(&args.prompt).await?,
         "openai" => mod_openai::mod_openai(&args.prompt).await?,
+        "openrouter" => mod_openrouter::mod_openrouter(&args.prompt).await?,
         "xai" => mod_xai::mod_xai(&args.prompt).await?,
         other => {
             eprintln!("Error: Unknown vendor '{}'", other);

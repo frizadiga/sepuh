@@ -10,29 +10,31 @@ use std::io::Write;
 
 use crate::utils::{get_env, get_model_to_use, write_resp_to_file};
 
-pub async fn mod_openai(prompt: &str) -> anyhow::Result<()> {
-    let model = get_model_to_use("OPENAI_MODEL", "gpt-4o-mini");
-    let api_key = get_env("OPENAI_API_KEY", "");
+pub async fn mod_openrouter(prompt: &str) -> anyhow::Result<()> {
+    let model = get_model_to_use("OPENROUTER_MODEL", "google/gemini-3-flash-preview");
+    let api_key = get_env("OPENROUTER_API_KEY", "");
 
     if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
-        println!("\nOpenAI model: {}\n", model);
+        println!("\nOpenRouter model: {}\n", model);
     }
 
     if api_key.is_empty() {
-        anyhow::bail!("OPENAI_API_KEY is not set");
+        anyhow::bail!("OPENROUTER_API_KEY is not set");
     }
 
-    let config = OpenAIConfig::new().with_api_key(api_key);
+    let config = OpenAIConfig::new()
+        .with_api_key(api_key)
+        .with_api_base("https://openrouter.ai/api/v1");
     let client = Client::with_config(config);
 
     if get_env("SESEPUH_HUB_STREAMING", "0") == "1" {
-        mod_openai_stream(&client, prompt, &model).await
+        mod_openrouter_stream(&client, prompt, &model).await
     } else {
-        mod_openai_sync(&client, prompt, &model).await
+        mod_openrouter_sync(&client, prompt, &model).await
     }
 }
 
-async fn mod_openai_sync(client: &Client<OpenAIConfig>, prompt: &str, model: &str) -> anyhow::Result<()> {
+async fn mod_openrouter_sync(client: &Client<OpenAIConfig>, prompt: &str, model: &str) -> anyhow::Result<()> {
     let request = CreateChatCompletionRequestArgs::default()
         .model(model)
         .messages([ChatCompletionRequestUserMessageArgs::default()
@@ -53,10 +55,9 @@ async fn mod_openai_sync(client: &Client<OpenAIConfig>, prompt: &str, model: &st
     Ok(())
 }
 
-async fn mod_openai_stream(client: &Client<OpenAIConfig>, prompt: &str, model: &str) -> anyhow::Result<()> {
+async fn mod_openrouter_stream(client: &Client<OpenAIConfig>, prompt: &str, model: &str) -> anyhow::Result<()> {
     let request = CreateChatCompletionRequestArgs::default()
         .model(model)
-        .seed(0_i64)
         .messages([ChatCompletionRequestUserMessageArgs::default()
             .content(prompt)
             .build()?
@@ -71,11 +72,11 @@ async fn mod_openai_stream(client: &Client<OpenAIConfig>, prompt: &str, model: &
         for choice in &chunk.choices {
             if let Some(content) = choice.delta.content.as_deref() {
                 print!("{}", content);
-                std::io::stdout().flush().ok(); // flush to ensure real-time streaming display
+                std::io::stdout().flush().ok();
                 result_buf.push_str(content);
             }
             if choice.finish_reason.is_some() {
-                println!(); // newline after last stream chunk
+                println!();
             }
         }
     }
