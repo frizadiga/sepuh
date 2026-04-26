@@ -3,6 +3,8 @@ mod mod_ollama;
 mod mod_openai;
 mod mod_openrouter;
 mod mod_xai;
+mod openai_compat;
+mod sse;
 mod utils;
 
 use clap::Parser;
