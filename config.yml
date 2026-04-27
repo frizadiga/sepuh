@@ -11,13 +11,10 @@ models:
   - name: gpt-5-codex
     vendor: openai
 
-  - name: claude-sonnet-4-20250514
+  - name: claude-sonnet-4-6
     vendor: anthropic
 
-  - name: claude-3-5-sonnet-20241022
-    vendor: anthropic
-
-  - name: claude-3-7-sonnet-20250219
+  - name: claude-opus-4-7
     vendor: anthropic
 
   - name: gemini-2.0-flash
@@ -28,9 +25,6 @@ models:
 
   - name: mistral-small-latest
     vendor: mistral
-
-  - name: grok-2-latest
-    vendor: xai
 
   - name: grok-4-fast-reasoning
     vendor: xai

@@ -6,7 +6,7 @@ use crate::sse::for_each_sse_payload;
 use crate::utils::{get_env, get_model_to_use, write_resp_to_file};
 
 pub async fn mod_google(prompt: &str) -> anyhow::Result<()> {
-    let model = get_model_to_use("GOOGLE_MODEL", "gemini-2.0-flash");
+    let model = get_model_to_use("GOOGLE_MODEL", "gemini-3-flash-preview");
     let api_key = get_env("GEMINI_API_KEY", "");
 
     if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
