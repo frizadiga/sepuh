@@ -5,9 +5,6 @@ models:
   - name: gpt-4o-mini
     vendor: openai
 
-  - name: gpt-3.5-turbo
-    vendor: openai
-
   - name: gpt-5-codex
     vendor: openai
 
@@ -17,26 +14,24 @@ models:
   - name: claude-opus-4-7
     vendor: anthropic
 
-  - name: gemini-2.0-flash
-    vendor: google
-
-  - name: gemini-2.5-flash
-    vendor: google
-
-  - name: mistral-small-latest
-    vendor: mistral
-
-  - name: grok-4-fast-reasoning
-    vendor: xai
-
-  - name: deepseek-coder
-    vendor: ollama # Don't confuse: sesepuh vendor is the engine that runs the model, not the entity that created it.
-
   - name: gemma4:e2b
     vendor: ollama
+
+  - name: kimi-k2.6
+    vendor: openrouter
 
   - name: gemini-3-flash-preview
     vendor: openrouter
 
   - name: gemini-3-flash-preview
     vendor: google
+
+  - name: grok-4-fast-reasoning
+    vendor: xai
+
+  - name: grok-4-1-fast-reasoning
+    vendor: xai
+
+  - name: deepseek-coder
+    vendor: ollama # Don't confuse: vendor is the engine that runs the model, not the entity that created it.
+

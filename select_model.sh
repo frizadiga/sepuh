@@ -31,15 +31,15 @@ fn_select_model() {
 
   local vendor=$(echo "${model_data}" | yq '.vendor')
 
-  echo "SESEPUH_HUB_MODEL=${model_name_raw}" >&2
-  echo "SESEPUH_HUB_VENDOR=${vendor}" >&2
+  echo "SEPUH_MODEL=${model_name_raw}" >&2
+  echo "SEPUH_VENDOR=${vendor}" >&2
 
-  export SESEPUH_HUB_MODEL="${model_name_raw}"
-  export SESEPUH_HUB_VENDOR="${vendor}"
+  export SEPUH_MODEL="${model_name_raw}"
+  export SEPUH_VENDOR="${vendor}"
 
   if [[ "$*" == *"--consume-output"* ]]; then
-    echo "SESEPUH_HUB_MODEL=${model_name_raw}" &&
-    echo "SESEPUH_HUB_VENDOR=${vendor}"
+    echo "SEPUH_MODEL=${model_name_raw}" &&
+    echo "SEPUH_VENDOR=${vendor}"
     return $?
   fi
 }

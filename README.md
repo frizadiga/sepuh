@@ -36,16 +36,16 @@ make release
 
 Required by selected vendor:
 
-- `SESEPUH_HUB_VENDOR`: `openai`, `xai`, or `anthropic`
+- `SEPUH_VENDOR`: `openai`, `xai`, or `anthropic`
 - `OPENAI_API_KEY` for OpenAI
 - `XAI_API_KEY` for xAI
 - `ANTHROPIC_API_KEY` for Anthropic
 
 Optional:
 
-- `SESEPUH_HUB_MODEL` (global model override)
-- `SESEPUH_HUB_STREAMING=1` to stream tokens
-- `SESEPUH_HUB_RES_ONLY=1` to suppress banner/model info
+- `SEPUH_MODEL` (global model override)
+- `SEPUH_STREAMING=1` to stream tokens
+- `SEPUH_RES_ONLY=1` to suppress banner/model info
 
 ## Response file
 

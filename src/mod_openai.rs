@@ -6,7 +6,7 @@ pub async fn mod_openai(prompt: &str) -> anyhow::Result<()> {
     let api_key = get_env("OPENAI_API_KEY", "");
     let base_url = get_env("OPENAI_URL", "https://api.openai.com/v1");
 
-    if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
+    if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("\nOpenAI model: {}\n", model);
     }
 
@@ -16,7 +16,7 @@ pub async fn mod_openai(prompt: &str) -> anyhow::Result<()> {
 
     let client = reqwest::Client::new();
 
-    let content = if get_env("SESEPUH_HUB_STREAMING", "0") == "1" {
+    let content = if get_env("SEPUH_STREAMING", "0") == "1" {
         chat_stream(&client, &base_url, &api_key, &model, prompt, Some(0)).await?
     } else {
         let content = chat_sync(&client, &base_url, &api_key, &model, prompt).await?;

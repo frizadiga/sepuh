@@ -9,7 +9,7 @@ pub async fn mod_google(prompt: &str) -> anyhow::Result<()> {
     let model = get_model_to_use("GOOGLE_MODEL", "gemini-3-flash-preview");
     let api_key = get_env("GEMINI_API_KEY", "");
 
-    if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
+    if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("\nGoogle model: {}\n", model);
     }
 
@@ -23,7 +23,7 @@ pub async fn mod_google(prompt: &str) -> anyhow::Result<()> {
 
     let client = Client::new();
 
-    if get_env("SESEPUH_HUB_STREAMING", "0") == "1" {
+    if get_env("SEPUH_STREAMING", "0") == "1" {
         let url = format!(
             "https://generativelanguage.googleapis.com/v1beta/models/{}:streamGenerateContent?alt=sse&key={}",
             api_model, api_key

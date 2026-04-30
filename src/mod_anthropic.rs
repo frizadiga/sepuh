@@ -6,7 +6,7 @@ pub async fn mod_anthropic(prompt: &str) -> anyhow::Result<()> {
     let api_key = get_env("ANTHROPIC_API_KEY", "");
     let base_url = get_env("ANTHROPIC_URL", "https://api.anthropic.com/v1");
 
-    if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
+    if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("\nAnthropic model: {}\n", model);
     }
 
@@ -16,7 +16,7 @@ pub async fn mod_anthropic(prompt: &str) -> anyhow::Result<()> {
 
     let client = reqwest::Client::new();
 
-    let content = if get_env("SESEPUH_HUB_STREAMING", "0") == "1" {
+    let content = if get_env("SEPUH_STREAMING", "0") == "1" {
         chat_stream(&client, &base_url, &api_key, &model, prompt, Some(2)).await?
     } else {
         let content = chat_sync(&client, &base_url, &api_key, &model, prompt).await?;

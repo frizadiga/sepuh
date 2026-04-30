@@ -2,10 +2,10 @@ use std::env;
 use std::fs;
 use std::path::PathBuf;
 
-/// Returns the model to use, checking SESEPUH_HUB_MODEL first, then the vendor-specific
+/// Returns the model to use, checking SEPUH_MODEL first, then the vendor-specific
 /// env var, and finally falling back to the default model.
 pub fn get_model_to_use(env_var_name: &str, default_model: &str) -> String {
-    if let Ok(model) = env::var("SESEPUH_HUB_MODEL") {
+    if let Ok(model) = env::var("SEPUH_MODEL") {
         if !model.is_empty() {
             return model;
         }

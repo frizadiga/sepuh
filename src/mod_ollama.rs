@@ -7,11 +7,11 @@ use crate::utils::{get_env, get_model_to_use, write_resp_to_file};
 pub async fn mod_ollama(prompt: &str) -> anyhow::Result<()> {
     let model = get_model_to_use("OLLAMA_MODEL", "gemma4:e2b");
 
-    if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
+    if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("\nOllama model: {}\n", model);
     }
 
-    if get_env("SESEPUH_HUB_STREAMING", "0") == "1" {
+    if get_env("SEPUH_STREAMING", "0") == "1" {
         mod_ollama_stream(prompt, &model).await
     } else {
         mod_ollama_sync(prompt, &model).await

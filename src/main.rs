@@ -21,9 +21,9 @@ struct Args {
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let args = Args::parse();
-    let vendor = get_env("SESEPUH_HUB_VENDOR", "");
+    let vendor = get_env("SEPUH_VENDOR", "");
 
-    if get_env("SESEPUH_HUB_RES_ONLY", "0") != "1" {
+    if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("🧙 Sepuh");
     }
 
