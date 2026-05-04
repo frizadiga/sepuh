@@ -17,7 +17,16 @@ models:
   - name: gemma4:e2b
     vendor: ollama
 
+  - name: gemma4:e4b
+    vendor: ollama
+
+  - name: qwen3.5:9b
+    vendor: ollama
+
   - name: kimi-k2.6
+    vendor: openrouter
+
+  - name: hy3-preview:free
     vendor: openrouter
 
   - name: gemini-3-flash-preview
