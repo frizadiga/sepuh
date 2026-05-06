@@ -23,6 +23,9 @@ models:
   - name: qwen3.5:9b
     vendor: ollama
 
+  - name: qwen2.5-coder:7b
+    vendor: ollama
+
   - name: kimi-k2.6
     vendor: openrouter
 
