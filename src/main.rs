@@ -21,13 +21,13 @@ struct Args {
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let args = Args::parse();
-    let vendor = get_env("SEPUH_VENDOR", "");
+    let provider = get_env("SEPUH_PROVIDER", "");
 
     if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("🧙 Sepuh");
     }
 
-    match vendor.as_str() {
+    match provider.as_str() {
         "anthropic" => mod_anthropic::mod_anthropic(&args.prompt).await?,
         "google" => mod_google::mod_google(&args.prompt).await?,
         "ollama" => mod_ollama::mod_ollama(&args.prompt).await?,
@@ -35,7 +35,7 @@ async fn main() -> anyhow::Result<()> {
         "openrouter" => mod_openrouter::mod_openrouter(&args.prompt).await?,
         "xai" => mod_xai::mod_xai(&args.prompt).await?,
         other => {
-            eprintln!("Error: Unknown vendor '{}'", other);
+            eprintln!("Error: Unknown provider '{}'", other);
             std::process::exit(1);
         }
     }

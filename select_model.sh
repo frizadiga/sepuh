@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # alias: `n/a`
-# desc: flatten choice of model without worrying about vendor
+# desc: flatten choice of model without worrying about provider
 # usage: fn_select_model.sh [args]
 
 # set -x # uncomment to debug
@@ -10,8 +10,8 @@ __self_path_dir=$(dirname "${__self_path_file}")
 
 fn_select_model() {
   local model_name
-  # Show "vendor/name" in fzf but return just the model name
-  model_name=$(yq -r '.models[] | "\(.vendor)/\(.name)"' "${__self_path_dir}/config.yml" | fzf --with-nth=1) || exit 1
+  # Show "provider/name" in fzf but return just the model name
+  model_name=$(yq -r '.models[] | "\(.provider)/\(.name)"' "${__self_path_dir}/config.yml" | fzf --with-nth=1) || exit 1
 
   # Extract just the name part (after the slash) for internal use
   local model_name_raw="${model_name##*/}"
@@ -29,17 +29,17 @@ fn_select_model() {
   echo "$model_data" >&2
   echo '' >&2
 
-  local vendor=$(echo "${model_data}" | yq '.vendor')
+  local provider=$(echo "${model_data}" | yq '.provider')
 
   echo "SEPUH_MODEL=${model_name_raw}" >&2
-  echo "SEPUH_VENDOR=${vendor}" >&2
+  echo "SEPUH_PROVIDER=${provider}" >&2
 
   export SEPUH_MODEL="${model_name_raw}"
-  export SEPUH_VENDOR="${vendor}"
+  export SEPUH_PROVIDER="${provider}"
 
   if [[ "$*" == *"--consume-output"* ]]; then
     echo "SEPUH_MODEL=${model_name_raw}" &&
-    echo "SEPUH_VENDOR=${vendor}"
+    echo "SEPUH_PROVIDER=${provider}"
     return $?
   fi
 }

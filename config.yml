@@ -1,49 +1,52 @@
 models:
   - name: gpt-4o
-    vendor: openai
+    provider: openai
 
   - name: gpt-4o-mini
-    vendor: openai
+    provider: openai
 
   - name: gpt-5-codex
-    vendor: openai
+    provider: openai
 
   - name: claude-sonnet-4-6
-    vendor: anthropic
+    provider: anthropic
 
   - name: claude-opus-4-7
-    vendor: anthropic
+    provider: anthropic
 
   - name: gemma4:e2b
-    vendor: ollama
+    provider: ollama
 
   - name: gemma4:e4b
-    vendor: ollama
+    provider: ollama
 
   - name: qwen3.5:9b
-    vendor: ollama
+    provider: ollama
 
   - name: qwen2.5-coder:7b
-    vendor: ollama
+    provider: ollama
 
   - name: kimi-k2.6
-    vendor: openrouter
+    provider: openrouter
 
-  - name: hy3-preview:free
-    vendor: openrouter
-
-  - name: gemini-3-flash-preview
-    vendor: openrouter
+  - name: hy3-preview
+    provider: openrouter
 
   - name: gemini-3-flash-preview
-    vendor: google
+    provider: openrouter
+
+  - name: deepseek-v4-flash
+    provider: openrouter
+
+  - name: gemini-3-flash-preview
+    provider: google
 
   - name: grok-4-fast-reasoning
-    vendor: xai
+    provider: xai
 
   - name: grok-4-1-fast-reasoning
-    vendor: xai
+    provider: xai
 
   - name: deepseek-coder
-    vendor: ollama # Don't confuse: vendor is the engine that runs the model, not the entity that created it.
+    provider: ollama # Don't confuse: provider is the engine that runs the model, not the entity that created it.
 

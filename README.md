@@ -2,7 +2,7 @@
 
 `sepuh` is a lighter version of [`sesepuh-hub`](https://github.com/frizadiga/sesepuh-hub), focused on lower memory fingerprint and faster startup time.
 
-It keeps the same simple CLI shape (`--prompt`) and environment-variable based config, but trims fz scope to essential vendors.
+It keeps the same simple CLI shape (`--prompt`) and environment-variable based config, but trims fz scope to essential providers.
 
 ## Current scope
 
@@ -34,9 +34,9 @@ make release
 
 ## Configuration
 
-Required by selected vendor:
+Required by selected provider:
 
-- `SEPUH_VENDOR`: `openai`, `xai`, or `anthropic`
+- `SEPUH_PROVIDER`: `openai`, `xai`, or `anthropic`
 - `OPENAI_API_KEY` for OpenAI
 - `XAI_API_KEY` for xAI
 - `ANTHROPIC_API_KEY` for Anthropic

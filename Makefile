@@ -24,30 +24,30 @@ clean:
 	cargo clean
 
 anthropic:
-	SEPUH_VENDOR=anthropic SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=anthropic SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
 google:
-	SEPUH_VENDOR=google SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=google SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
 ollama:
-	SEPUH_VENDOR=ollama SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=ollama SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
 openai:
-	SEPUH_VENDOR=openai SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=openai SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
 openrouter:
-	SEPUH_VENDOR=openrouter SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=openrouter SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
 xai:
-	SEPUH_VENDOR=xai SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=xai SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
 xai-web:
-	SEPUH_VENDOR=xai SEPUH_MODEL='' SEPUH_WEB_SEARCH=1 cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=xai SEPUH_MODEL='' SEPUH_WEB_SEARCH=1 cargo run -- --prompt $(PROMPT)
 
 xai-x:
-	SEPUH_VENDOR=xai SEPUH_MODEL='' SEPUH_X_SEARCH=1 cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=xai SEPUH_MODEL='' SEPUH_X_SEARCH=1 cargo run -- --prompt $(PROMPT)
 
 xai-search:
-	SEPUH_VENDOR=xai SEPUH_MODEL='' SEPUH_WEB_SEARCH=1 SEPUH_X_SEARCH=1 cargo run -- --prompt $(PROMPT)
+	SEPUH_PROVIDER=xai SEPUH_MODEL='' SEPUH_WEB_SEARCH=1 SEPUH_X_SEARCH=1 cargo run -- --prompt $(PROMPT)
 
 .PHONY: all dev build release start clean anthropic google ollama openai openrouter xai xai-web xai-x xai-search
