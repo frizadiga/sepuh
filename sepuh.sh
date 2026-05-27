@@ -17,7 +17,11 @@ declare -r __self_path_dir=$(dirname "${__self_path_file}")
 # fi
 
 fn_sepuh() {
-  "${__self_path_dir}/target/release/sepuh" --prompt "$*"
+  if [ $# -gt 0 ] && [ -n "$*" ]; then
+    "${__self_path_dir}/target/release/sepuh" --prompt "$*"
+  else
+    "${__self_path_dir}/target/release/sepuh"
+  fi
 }
 
 fn_sepuh "$*"
