@@ -38,6 +38,9 @@ models:
   - name: deepseek-v4-flash
     provider: openrouter
 
+  - name: glm-5.2
+    provider: openrouter
+
   - name: gemini-3-flash-preview
     provider: google
 
