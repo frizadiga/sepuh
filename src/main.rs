@@ -2,6 +2,7 @@ mod mod_anthropic;
 mod mod_google;
 mod mod_ollama;
 mod mod_openai;
+mod mod_opencode;
 mod mod_openrouter;
 mod mod_xai;
 mod openai_compat;
@@ -47,6 +48,7 @@ async fn main() -> anyhow::Result<()> {
         "ollama" => mod_ollama::mod_ollama(&prompt).await?,
         "openai" => mod_openai::mod_openai(&prompt).await?,
         "openrouter" => mod_openrouter::mod_openrouter(&prompt).await?,
+        "opencode" => mod_opencode::mod_opencode(&prompt).await?,
         "xai" => mod_xai::mod_xai(&prompt).await?,
         other => {
             eprintln!("Error: Unknown provider '{}'", other);

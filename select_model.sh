@@ -13,8 +13,10 @@ fn_select_model() {
   # Show "provider/name" in fzf but return just the model name
   model_name=$(yq -r '.models[] | "\(.provider)/\(.name)"' "${__self_path_dir}/config.yml" | fzf --with-nth=1) || exit 1
 
-  # Extract just the name part (after the slash) for internal use
-  local model_name_raw="${model_name##*/}"
+  # Extract just the name part (after the first slash) for internal use.
+  # Use shortest-prefix strip (`#`) instead of longest (`##`) so multi-slash
+  # model IDs like `openrouter/z-ai/glm-5.2` survive extraction intact.
+  local model_name_raw="${model_name#*/}"
 
   # query full data
   model_data=$(yq '.models[] | select(.name == "'"${model_name_raw}"'")' "${__self_path_dir}/config.yml")

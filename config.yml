@@ -53,3 +53,9 @@ models:
   - name: deepseek-coder
     provider: ollama # Don't confuse: provider is the engine that runs the model, not the entity that created it.
 
+  - name: openrouter/z-ai/glm-5.2
+    provider: opencode
+
+  - name: opencode/big-pickle
+    provider: opencode
+
