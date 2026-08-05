@@ -41,6 +41,9 @@ openrouter:
 opencode:
 	SEPUH_PROVIDER=opencode SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
+opencode-reasoning:
+	SEPUH_PROVIDER=opencode SEPUH_MODEL='' SEPUH_REASONING=1 cargo run -- --prompt $(PROMPT)
+
 xai:
 	SEPUH_PROVIDER=xai SEPUH_MODEL='' cargo run -- --prompt $(PROMPT)
 
@@ -53,4 +56,4 @@ xai-x:
 xai-search:
 	SEPUH_PROVIDER=xai SEPUH_MODEL='' SEPUH_WEB_SEARCH=1 SEPUH_X_SEARCH=1 cargo run -- --prompt $(PROMPT)
 
-.PHONY: all dev build release start clean anthropic google ollama openai openrouter opencode xai xai-web xai-x xai-search
+.PHONY: all dev build release start clean anthropic google ollama openai openrouter opencode opencode-reasoning xai xai-web xai-x xai-search

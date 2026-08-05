@@ -15,6 +15,9 @@ pub async fn mod_opencode(prompt: &str) -> anyhow::Result<()> {
 
     if get_env("SEPUH_RES_ONLY", "0") != "1" {
         println!("\nOpenCode agent: {}{}\n", agent, model_label(&model));
+        if get_env("SEPUH_REASONING", "0") == "1" {
+            println!("reasoning \u{2192} stderr\n");
+        }
     }
 
     let client = reqwest::Client::new();
@@ -203,7 +206,10 @@ async fn opencode_stream(
     }
 
     let mut result_buf = String::new();
+    let mut reasoning_part_ids: std::collections::HashSet<String> = std::collections::HashSet::new();
+    let show_reasoning = get_env("SEPUH_REASONING", "0") == "1";
     let mut stdout = std::io::stdout();
+    let mut stderr = std::io::stderr();
     let mut stream = event_resp.bytes_stream();
     let mut buf = String::new();
     let mut done = false;
@@ -229,13 +235,36 @@ async fn opencode_stream(
                 }
                 let event_type = payload["type"].as_str().unwrap_or("");
                 match event_type {
+                    "message.part.updated" => {
+                        // Reasoning parts arrive as a `part.updated` first
+                        // (which creates them empty), then stream their text
+                        // via `part.delta` with field "text" — same as the
+                        // final answer. Track their partIDs so we can tell
+                        // the two streams apart.
+                        if props["part"]["type"].as_str() == Some("reasoning") {
+                            if let Some(id) = props["part"]["id"].as_str() {
+                                reasoning_part_ids.insert(id.to_string());
+                            }
+                        }
+                    }
                     "message.part.delta" => {
                         if props["field"].as_str() == Some("text") {
                             if let Some(delta) = props["delta"].as_str() {
                                 if !delta.is_empty() {
-                                    print!("{}", delta);
-                                    stdout.flush().ok();
-                                    result_buf.push_str(delta);
+                                    let is_reasoning = props["partID"]
+                                        .as_str()
+                                        .map(|id| reasoning_part_ids.contains(id))
+                                        .unwrap_or(false);
+                                    if is_reasoning {
+                                        if show_reasoning {
+                                            eprint!("{}", delta);
+                                            stderr.flush().ok();
+                                        }
+                                    } else {
+                                        print!("{}", delta);
+                                        stdout.flush().ok();
+                                        result_buf.push_str(delta);
+                                    }
                                 }
                             }
                         }

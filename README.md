@@ -13,6 +13,7 @@ It keeps the same simple CLI shape (`--prompt`) and environment-variable based c
   - `openai`
   - `anthropic`
   - Unified gateway like `openrouter`
+  - `opencode` (local opencode agent server)
 - Sync and streaming response modes
 - Optional response-only output mode
 - Writes final response to a file for downstream tooling
@@ -46,6 +47,7 @@ Optional:
 - `SEPUH_MODEL` (global model override)
 - `SEPUH_STREAMING=1` to stream tokens
 - `SEPUH_RES_ONLY=1` to suppress banner/model info
+- `SEPUH_REASONING=1` to stream reasoning/thinking tokens to stderr (default: hidden)
 
 ## Response file
 
@@ -64,6 +66,8 @@ The `Makefile` includes:
 - `make anthropic PROMPT="..."`
 - `make openai PROMPT="..."`
 - `make xai PROMPT="..."`
+- `make opencode PROMPT="..."`
+- `make opencode-reasoning PROMPT="..."` (streams reasoning to stderr)
 - `make release`
 
 ## License
