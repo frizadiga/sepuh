@@ -61,3 +61,6 @@ models:
 
   - name: opencode/deepseek-v4-flash-free
     provider: opencode
+
+  - name: opencode/hy3-free
+    provider: opencode
