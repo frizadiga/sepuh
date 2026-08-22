@@ -41,6 +41,9 @@ models:
   - name: glm-5.2
     provider: openrouter
 
+  - name: glm-5.2:free
+    provider: openrouter
+
   - name: gemini-3-flash-preview
     provider: google
 
@@ -64,3 +67,6 @@ models:
 
   - name: opencode/hy3-free
     provider: opencode
+
+  - name: openrouter/z-ai/glm-5.2:free
+    provider: opencode # note: this is proxied tru opencode
