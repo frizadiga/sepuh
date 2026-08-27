@@ -47,6 +47,27 @@ Optional:
 - `SEPUH_MODEL` (global model override)
 - `SEPUH_STREAMING=1` to stream tokens
 - `SEPUH_RES_ONLY=1` to suppress banner/model info
+
+### OpenCode server version
+
+The `opencode` provider talks to a local OpenCode agent server. Two server
+generations are supported, selected with `OPENCODE_USE_VERSION` (`1` or `2`,
+default `1`):
+
+- **v1** (`opencode serve`, default `http://localhost:4096`)
+- **v2** (`opencode2 serve`, default `http://localhost:4097`)
+
+```bash
+export OPENCODE_USE_VERSION='1'   # 1 | 2
+```
+
+Both use HTTP Basic auth with username `opencode` and the password from
+`OPENCODE_SERVER_PASSWORD`. Override the base URL with `OPENCODE_BASE_URL` and
+the agent with `OPENCODE_AGENT` (default `plan`).
+
+In v2 the model override (`OPENCODE_MODEL`, e.g. `openrouter/z-ai/glm-5.2`) is
+sent as `providerID`/`id` at session creation; the assistant reply is streamed
+back over the `/api/event` SSE channel and terminates on `session.execution.succeeded`.
 - `SEPUH_REASONING=1` to stream reasoning/thinking tokens to stderr (default: hidden)
 
 ## Response file
@@ -68,6 +89,8 @@ The `Makefile` includes:
 - `make xai PROMPT="..."`
 - `make opencode PROMPT="..."`
 - `make opencode-reasoning PROMPT="..."` (streams reasoning to stderr)
+- `make opencode2 PROMPT="..."` (targets the v2 `opencode2` server)
+- `make opencode2-reasoning PROMPT="..."` (v2, streams reasoning to stderr)
 - `make release`
 
 ## License
