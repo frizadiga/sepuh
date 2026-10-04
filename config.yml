@@ -70,3 +70,7 @@ models:
 
   - name: openrouter/z-ai/glm-5.2:free
     provider: opencode # note: this is proxied tru opencode
+
+  - name: opencode/muse-spark-1.3-contributor-free
+    provider: opencode
+
