@@ -59,6 +59,9 @@ models:
   - name: openrouter/z-ai/glm-5.2
     provider: opencode
 
+  - name: openrouter/z-ai/glm-5.2:free
+    provider: opencode # note: this is proxied tru opencode
+
   - name: opencode/big-pickle
     provider: opencode
 
@@ -68,9 +71,8 @@ models:
   - name: opencode/hy3-free
     provider: opencode
 
-  - name: openrouter/z-ai/glm-5.2:free
-    provider: opencode # note: this is proxied tru opencode
+  - name: opencode-go/glm-5.3-flash
+    provider: opencode
 
   - name: opencode/muse-spark-1.3-contributor-free
     provider: opencode
-
